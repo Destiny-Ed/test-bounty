@@ -63,29 +63,48 @@ class _CampaignDetailsScreenState extends State<CampaignDetailsScreen> {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 10,
+                    spacing: 20,
                     children: [
-                      InfoBox(
-                        color: AppColors.lightBlue,
-                        value: "Live campaign",
+                      Row(
+                        spacing: 10,
+                        children: [
+                          InfoBox(
+                            color: AppColors.lightBlue,
+                            value: "Live campaign",
+                          ),
+
+                          Text(
+                            "ends in 2 days".capitalize,
+                            style: Theme.of(context).textTheme.titleMedium!
+                              ..color?.darken(),
+                          ),
+                        ],
                       ),
                       if (campaignVm.selectedCampaignTab != "description")
                         SearchWidget(title: "search for testers"),
 
-                      Row(
-                        spacing: 20,
-                        children: [
-                          buildInfoVerticalCard(
-                            context,
-                            title: "active testers",
-                            value: "142",
-                          ),
-                          buildInfoVerticalCard(
-                            context,
-                            title: "submitted reports",
-                            value: "42",
-                          ),
-                        ],
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          spacing: 20,
+                          children: [
+                            buildInfoVerticalCard(
+                              context,
+                              title: "active testers",
+                              value: "142",
+                            ),
+                            buildInfoVerticalCard(
+                              context,
+                              title: "submitted reports",
+                              value: "42",
+                            ),
+                            buildInfoVerticalCard(
+                              context,
+                              title: "reward per tester",
+                              value: "\$10",
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         padding: const EdgeInsets.all(5),

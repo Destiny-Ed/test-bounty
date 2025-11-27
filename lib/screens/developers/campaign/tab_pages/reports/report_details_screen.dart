@@ -170,7 +170,7 @@ class _ReportDetailsScreenState extends State<ReportDetailsScreen> {
                             "app crashes consistently when trying to save profile information after editing the bio. Seems to be an issue with handling long text strings"
                                     .capitalize *
                                 4,
-                            style: Theme.of(context).textTheme.titleSmall!
+                            style: Theme.of(context).textTheme.titleMedium!
                               ..color?.darken(),
                           ),
                         ),

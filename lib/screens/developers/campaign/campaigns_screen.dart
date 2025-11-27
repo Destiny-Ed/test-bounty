@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
 import 'package:test_bounty/screens/developers/campaign/campaign_details_screen.dart';
-import 'package:test_bounty/screens/developers/create_campaign/create_campaign_wizard.dart';
+import 'package:test_bounty/screens/developers/campaign/create_campaign/create_campaign_wizard.dart';
 import 'package:test_bounty/widgets/search_widget.dart';
 
 class CampaignsScreen extends StatelessWidget {

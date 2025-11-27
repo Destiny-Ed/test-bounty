@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
 
 class CustomTextField extends StatefulWidget {
   // final TextEditingController _controller;
@@ -62,7 +63,7 @@ class CustomTextFieldState extends State<CustomTextField> {
                 )
               : const Text(""),
 
-          hintText: widget.hint,
+          hintText: widget.hint.cap,
         ),
       ),
     );

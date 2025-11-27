@@ -10,10 +10,10 @@ class ReportsScreen extends StatelessWidget {
         title: const Text('Reports'),
         automaticallyImplyLeading: false,
       ),
-      body: const Center(
+      body: Center(
         child: Text(
           'Detailed bug reports & analytics',
-          style: TextStyle(fontSize: 18),
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),
     );
