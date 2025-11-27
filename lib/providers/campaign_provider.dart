@@ -6,8 +6,9 @@ import 'package:test_bounty/screens/developers/campaign/create_campaign/step2_bu
 import 'package:test_bounty/screens/developers/campaign/create_campaign/step3_targeting.dart';
 import 'package:test_bounty/screens/developers/campaign/create_campaign/step4_testers_schedule.dart';
 import 'package:test_bounty/screens/developers/campaign/create_campaign/step5_rewards_budget.dart';
-import 'package:test_bounty/screens/developers/campaign/create_campaign/step6_questionnaire.dart';
-import 'package:test_bounty/screens/developers/campaign/create_campaign/step7_review_launch.dart';
+import 'package:test_bounty/screens/developers/campaign/create_campaign/step6_test_plan.dart';
+import 'package:test_bounty/screens/developers/campaign/create_campaign/step7_questionnaire.dart';
+import 'package:test_bounty/screens/developers/campaign/create_campaign/step8_review_launch.dart';
 
 class CampaignProvider extends ChangeNotifier {
   Color bugReportColors(bugReports bug) {
@@ -56,6 +57,15 @@ class CampaignProvider extends ChangeNotifier {
     "russia",
   ];
 
+  List<String> campaignTestDuration = [
+    "3 days",
+    "7 days",
+    "14 days",
+    "21 days",
+    "30 days",
+    "90 days",
+  ];
+
   List<int> campaignAges = [12, 13, 16, 18, 30, 50];
 
   List<int> _selectedCampaignAges = [];
@@ -65,12 +75,45 @@ class CampaignProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  int _numberOfCampaignTesters = 10;
+  int get numberOfCampaignTesters => _numberOfCampaignTesters;
+  set numberOfCampaignTesters(int value) {
+    _numberOfCampaignTesters = value;
+    notifyListeners();
+  }
+
+  int _campaignRewardPerTester = 1;
+  int get campaignRewardPerTester => _campaignRewardPerTester;
+  void updateCampaignRewardPerTester(bool increment) {
+    if (increment) {
+      _campaignRewardPerTester++;
+    } else {
+      if (_campaignRewardPerTester > 1) {
+        _campaignRewardPerTester--;
+      }
+    }
+    notifyListeners();
+  }
+
+  String _selectedCampaignTestDuration = "3 days";
+  String get selectedCampaignTestDuration => _selectedCampaignTestDuration;
+  set selectedCampaignTestDuration(String value) {
+    _selectedCampaignTestDuration = value;
+    notifyListeners();
+  }
+
   List<String> _selectedCampaignCountries = [];
   List<String> get selectedCampaignCountries => _selectedCampaignCountries;
   set selectedCampaignCountries(List<String> countries) {
     _selectedCampaignCountries = countries;
     notifyListeners();
   }
+
+  final _tenPercent = (10 / 100);
+  int get _productRewardAndTesters =>
+      (_campaignRewardPerTester * _numberOfCampaignTesters);
+  double get totalCampaignPayment =>
+      _productRewardAndTesters + (_productRewardAndTesters * _tenPercent);
 
   String _selectedCampaignDeviceVersion = "";
   String get selectedCampaignDeviceVersion => _selectedCampaignDeviceVersion;
@@ -100,8 +143,9 @@ class CampaignProvider extends ChangeNotifier {
     Step3Targeting(),
     Step4TestersSchedule(),
     Step5RewardsBudget(),
-    Step6Questionnaire(),
-    Step7ReviewLaunch(),
+    Step6TestPlan(),
+    Step7Questionnaire(),
+    Step8ReviewLaunch(),
   ];
 
   void next() {

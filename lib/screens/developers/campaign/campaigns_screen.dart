@@ -3,6 +3,7 @@ import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
 import 'package:test_bounty/screens/developers/campaign/campaign_details_screen.dart';
 import 'package:test_bounty/screens/developers/campaign/create_campaign/create_campaign_wizard.dart';
+import 'package:test_bounty/widgets/info_box.dart';
 import 'package:test_bounty/widgets/search_widget.dart';
 
 class CampaignsScreen extends StatelessWidget {
@@ -15,16 +16,30 @@ class CampaignsScreen extends StatelessWidget {
         title: const Text('My Campaigns'),
         automaticallyImplyLeading: false,
         actions: [
+          // GestureDetector(
+          //   onTap: () {
+          //     //filter campaigns
+          //   },
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(10.0),
+          //     child: CircleAvatar(
+          //       backgroundColor: Theme.of(context).cardColor,
+          //       foregroundColor: Theme.of(context).textTheme.titleMedium!.color,
+          //       child: Icon(Icons.shuffle),
+          //     ),
+          //   ),
+          // ),
           GestureDetector(
-            onTap: () {
-              //filter campaigns
-            },
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CreateCampaignWizard()),
+            ),
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: CircleAvatar(
-                backgroundColor: Theme.of(context).cardColor,
-                foregroundColor: Theme.of(context).textTheme.titleMedium!.color,
-                child: Icon(Icons.shuffle),
+              padding: const EdgeInsets.all(15.0),
+              child: InfoBox(
+                color: AppColors.primaryBlue,
+                value: "Create Campaign",
+                textColor: AppColors.white,
               ),
             ),
           ),
@@ -56,16 +71,16 @@ class CampaignsScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: AppColors.white,
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const CreateCampaignWizard()),
-        ),
-        label: const Text('Create Campaign'),
-        icon: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   foregroundColor: AppColors.white,
+      //   onPressed: () => Navigator.push(
+      //     context,
+      //     MaterialPageRoute(builder: (_) => const CreateCampaignWizard()),
+      //   ),
+      //   label: const Text('Create Campaign'),
+      //   icon: const Icon(Icons.add),
+      // ),
     );
   }
 }

@@ -119,7 +119,8 @@ class _AnalysisViewState extends State<AnalysisView> {
       return PieChartSectionData(
         color: reportVm.bugReportColors(bug),
         value: index * 5,
-        title: "${(index * 5) / 100}%",
+        // title: "${(index * 5) / 100}%",
+        title: "",
         radius: radius,
         titleStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
           fontWeight: FontWeight.bold,
