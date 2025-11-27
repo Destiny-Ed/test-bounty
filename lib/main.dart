@@ -22,8 +22,9 @@ class TestBountyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'TestBounty',
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
-        darkTheme: AppTheme.dark,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
         home: const SplashScreen(),
       ),
     );

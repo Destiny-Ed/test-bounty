@@ -32,14 +32,20 @@ class _CreateCampaignWizardState extends State<CreateCampaignWizard> {
   void next() {
     if (currentStep < steps.length - 1) {
       setState(() => currentStep++);
-      _controller.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.ease);
+      _controller.nextPage(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.ease,
+      );
     }
   }
 
   void back() {
     if (currentStep > 0) {
       setState(() => currentStep--);
-      _controller.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.ease);
+      _controller.previousPage(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.ease,
+      );
     }
   }
 
@@ -51,7 +57,10 @@ class _CreateCampaignWizardState extends State<CreateCampaignWizard> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
         ],
       ),
       body: Column(
@@ -60,29 +69,38 @@ class _CreateCampaignWizardState extends State<CreateCampaignWizard> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
-              children: List.generate(steps.length, (i) => Expanded(
-                child: Container(
-                  height: 8,
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                    color: i <= currentStep ? const Color(0xFF00D4B1) : Colors.grey[300],
-                    borderRadius: BorderRadius.circular(4),
+              children: List.generate(
+                steps.length,
+                (i) => Expanded(
+                  child: Container(
+                    height: 8,
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: i <= currentStep
+                          ? const Color(0xFF00D4B1)
+                          : Colors.grey[300],
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ),
           Expanded(
             child: PageView(
               controller: _controller,
               physics: const NeverScrollableScrollPhysics(),
-              children: steps.map((s) => _StepWrapper(
-                child: s,
-                stepNumber: steps.indexOf(s) + 1,
-                isLast: steps.indexOf(s) == steps.length - 1,
-                onNext: next,
-                onBack: back,
-              )).toList(),
+              children: steps
+                  .map(
+                    (s) => _StepWrapper(
+                      child: s,
+                      stepNumber: steps.indexOf(s) + 1,
+                      isLast: steps.indexOf(s) == steps.length - 1,
+                      onNext: next,
+                      onBack: back,
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ],
@@ -115,9 +133,21 @@ class _StepWrapper extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(backgroundColor: const Color(0xFF0066FF), child: Text('$stepNumber', style: const TextStyle(color: Colors.white))),
+              CircleAvatar(
+                backgroundColor: const Color(0xFF0066FF),
+                child: Text(
+                  '$stepNumber',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
               const SizedBox(width: 12),
-              Text('Step $stepNumber', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(
+                'Step $stepNumber',
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 30),
@@ -132,8 +162,13 @@ class _StepWrapper extends StatelessWidget {
                 onPressed: onNext,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF00D4B1),
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 16,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                 ),
                 child: Text(isLast ? 'Launch Campaign' : 'Next'),
               ),
