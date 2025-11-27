@@ -42,6 +42,50 @@ class CampaignProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<String> campaignCountries = [
+    "worldwide",
+    "Nigeria",
+    "United states",
+    "united kingdom",
+    "isreal",
+    "ghana",
+    "china",
+    "morroco",
+    "south africa",
+    "germany",
+    "russia",
+  ];
+
+  List<int> campaignAges = [12, 13, 16, 18, 30, 50];
+
+  List<int> _selectedCampaignAges = [];
+  List<int> get selectedCampaignAges => _selectedCampaignAges;
+  set selectedCampaignAges(List<int> value) {
+    _selectedCampaignAges = value;
+    notifyListeners();
+  }
+
+  List<String> _selectedCampaignCountries = [];
+  List<String> get selectedCampaignCountries => _selectedCampaignCountries;
+  set selectedCampaignCountries(List<String> countries) {
+    _selectedCampaignCountries = countries;
+    notifyListeners();
+  }
+
+  String _selectedCampaignDeviceVersion = "";
+  String get selectedCampaignDeviceVersion => _selectedCampaignDeviceVersion;
+  set selectedCampaignDeviceVersion(String value) {
+    _selectedCampaignDeviceVersion = value;
+    notifyListeners();
+  }
+
+  bool _phoneOnly = false;
+  bool get phoneOnly => _phoneOnly;
+  set phoneOnly(bool value) {
+    _phoneOnly = value;
+    notifyListeners();
+  }
+
   final PageController campaignStepController = PageController();
   int _currentCampaignStep = 0;
   int get currentCampaignStep => _currentCampaignStep;

@@ -24,7 +24,6 @@ class Step1BasicInfo extends StatelessWidget {
         20.height(),
         CustomTextField(password: false, hint: "Public App Name"),
         20.height(),
-
         buildHeaderTitle(context, text: "app icon"),
         10.height(),
         Container(
