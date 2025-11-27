@@ -17,7 +17,7 @@ class _AnalysisViewState extends State<AnalysisView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ReportsProvider>(
+    return Consumer<CampaignProvider>(
       builder: (context, reportVm, _) {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -105,7 +105,7 @@ class _AnalysisViewState extends State<AnalysisView> {
     );
   }
 
-  List<PieChartSectionData>? showingSections(ReportsProvider reportVm) {
+  List<PieChartSectionData>? showingSections(CampaignProvider reportVm) {
     return List.generate(bugReports.values.length, (index) {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 14.0 : 12.0;

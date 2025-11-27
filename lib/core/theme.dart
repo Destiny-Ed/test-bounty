@@ -99,7 +99,7 @@ class AppTheme {
   static final lightTheme = ThemeData(
     primaryColor: AppColors.primaryBlue,
     secondaryHeaderColor: AppColors.darkGray,
-    cardColor: AppColors.cardWhite,
+    cardColor: AppColors.gray,
     scaffoldBackgroundColor: AppColors.bgWhite,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF0066FF),

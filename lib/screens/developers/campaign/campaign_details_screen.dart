@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_bounty/core/extensions.dart';
+import 'package:test_bounty/core/theme.dart';
+import 'package:test_bounty/providers/reports_provider.dart';
+import 'package:test_bounty/screens/developers/campaign/tab_pages/descriptions_view.dart';
+import 'package:test_bounty/screens/developers/campaign/tab_pages/reports/reports_view.dart';
+import 'package:test_bounty/screens/developers/campaign/tab_pages/testers_view.dart';
+import 'package:test_bounty/widgets/info_box.dart';
+import 'package:test_bounty/widgets/search_widget.dart';
+
+class CampaignDetailsScreen extends StatefulWidget {
+  const CampaignDetailsScreen({super.key});
+
+  @override
+  State<CampaignDetailsScreen> createState() => _CampaignDetailsScreenState();
+}
+
+class _CampaignDetailsScreenState extends State<CampaignDetailsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("ChromeNote Ai")),
+      body: Consumer<CampaignProvider>(
+        builder: (context, campaignVm, child) {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 10,
+                    children: [
+                      InfoBox(
+                        color: AppColors.lightBlue,
+                        value: "Live campaign",
+                      ),
+                      if (campaignVm.selectedCampaignTab != "description")
+                        SearchWidget(title: "search for testers"),
+                      Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Theme.of(context).cardColor,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            campaignVm.campaignDetailTabs.length,
+                            (index) {
+                              final tab = campaignVm.campaignDetailTabs[index];
+                              final isSelected =
+                                  tab == campaignVm.selectedCampaignTab;
+                              return Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    campaignVm.selectedCampaignTab = tab;
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 400),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: isSelected
+                                        ? BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              15,
+                                            ),
+                                            color: Theme.of(
+                                              context,
+                                            ).secondaryHeaderColor,
+                                          )
+                                        : null,
+                                    child: Text(
+                                      tab.cap,
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.titleSmall,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+
+                      _campaignTabPages(campaignVm),
+                      10.height(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _campaignTabPages(CampaignProvider campaignVm) {
+    switch (campaignVm.selectedCampaignTab) {
+      case "description":
+        return CampaignDescriptionsView(campaignVm: campaignVm);
+      case "reports":
+        return CampaignReportView(campaignVm: campaignVm);
+      case "testers":
+      default:
+        return CampaignTestersView(campaignVm: campaignVm);
+    }
+  }
+}

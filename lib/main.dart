@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test_bounty/core/constants.dart';
 import 'package:test_bounty/providers/main_activity_provider.dart';
 import 'package:test_bounty/providers/reports_provider.dart';
 import 'core/theme.dart';
@@ -21,10 +22,10 @@ class TestBountyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => RoleProvider()),
         ChangeNotifierProvider(create: (_) => MainActivityProvider()),
-        ChangeNotifierProvider(create: (_) => ReportsProvider()),
+        ChangeNotifierProvider(create: (_) => CampaignProvider()),
       ],
       child: MaterialApp(
-        title: 'TestBounty',
+        title: appName,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,

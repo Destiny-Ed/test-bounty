@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
+import 'package:test_bounty/screens/developers/campaign/campaign_details_screen.dart';
 import 'package:test_bounty/screens/developers/create_campaign/create_campaign_wizard.dart';
+import 'package:test_bounty/widgets/search_widget.dart';
 
 class CampaignsScreen extends StatelessWidget {
   const CampaignsScreen({super.key});
@@ -36,45 +38,18 @@ class CampaignsScreen extends StatelessWidget {
               child: Column(
                 spacing: 10,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: TextFormField(
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.search,
-                          size: 20,
-                          color: Theme.of(
-                            context,
-                          ).textTheme.titleLarge!.color!.darken(),
-                        ),
-                        isDense: true,
-                        border: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        hintText: "search for a campaign...".capitalize,
-                        hintStyle: TextStyle(
-                          color: Theme.of(
-                            context,
-                          ).textTheme.titleLarge!.color!.darken(),
-                        ),
-                      ),
-                    ),
-                  ),
+                  SearchWidget(title: "search for a campaign"),
 
                   ...List.generate(5, (index) {
                     return campaignTile(
                       context: context,
                       status: "live",
                       color: AppColors.green,
-                      value: 50
+                      value: 50,
                     );
                   }),
+
+                  60.height(),
                 ],
               ),
             ),
@@ -82,6 +57,8 @@ class CampaignsScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: AppColors.white,
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const CreateCampaignWizard()),
@@ -99,56 +76,81 @@ Widget campaignTile({
   required Color color,
   required double value,
 }) {
-  return Container(
-    padding: const EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      color: Theme.of(context).cardColor,
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text("iOS", style: Theme.of(context).textTheme.titleMedium),
-        ListTile(
-          contentPadding: const EdgeInsets.all(0),
-          title: Text(
-            "ChromaNote Ai".cap,
-            style: Theme.of(context).textTheme.headlineMedium,
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CampaignDetailsScreen()),
+      );
+    },
+    child: Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("iOS", style: Theme.of(context).textTheme.titleMedium),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text("iOS", style: Theme.of(context).textTheme.titleMedium),
+          //     Icon(
+          //       Icons.arrow_forward_ios,
+          //       color: Theme.of(context).textTheme.titleMedium!.color,
+          //       size: 14,
+          //     ),
+          //   ],
+          // ),
+          ListTile(
+            contentPadding: const EdgeInsets.all(0),
+            title: Text(
+              "ChromaNote Ai".cap,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            subtitle: Text(
+              "up to \$50",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            trailing: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Theme.of(context).scaffoldBackgroundColor.darken(),
+              ),
+              width: 100,
+              height: 50,
+              child: Icon(Icons.tiktok),
+            ),
           ),
-          subtitle: Text(
-            "up to \$50",
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          trailing: CircleAvatar(
-            backgroundColor: AppColors.yellow,
-            child: Icon(Icons.tiktok),
-          ),
-        ),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              status.capitalize,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium!.copyWith(color: color),
-            ),
-            Text(
-              "5/10 tasks complete".capitalize,
-              style: Theme.of(context).textTheme.titleMedium!..color!.darken(),
-            ),
-          ],
-        ),
-        Slider(
-          padding: const EdgeInsets.all(0),
-          value: value,
-          activeColor: color,
-          onChanged: (_) {},
-          max: 100,
-        ),
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                status.capitalize,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium!.copyWith(color: color),
+              ),
+              Text(
+                "5/10 tasks complete".capitalize,
+                style: Theme.of(context).textTheme.titleMedium!
+                  ..color!.darken(),
+              ),
+            ],
+          ),
+          Slider(
+            padding: const EdgeInsets.all(0),
+            value: value,
+            activeColor: color,
+            onChanged: (_) {},
+            max: 100,
+          ),
+        ],
+      ),
     ),
   );
 }
