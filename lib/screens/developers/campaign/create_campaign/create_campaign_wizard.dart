@@ -13,6 +13,12 @@ class CreateCampaignWizard extends StatefulWidget {
 
 class _CreateCampaignWizardState extends State<CreateCampaignWizard> {
   @override
+  void initState() {
+    super.initState();
+    context.read<CampaignProvider>().currentCampaignStep = 0;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<CampaignProvider>(
       builder: (context, campaignVm, child) {
@@ -115,7 +121,7 @@ class _StepWrapper extends StatelessWidget {
                   ),
                 ),
                 12.width(),
-        
+
                 Text(
                   'Step $stepNumber',
                   style: Theme.of(context).textTheme.titleMedium,

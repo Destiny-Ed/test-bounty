@@ -134,7 +134,9 @@ class CampaignProvider extends ChangeNotifier {
   int get currentCampaignStep => _currentCampaignStep;
   set currentCampaignStep(int index) {
     _currentCampaignStep = index;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 
   final List<Widget> steps = const [
@@ -157,6 +159,16 @@ class CampaignProvider extends ChangeNotifier {
         curve: Curves.ease,
       );
     }
+  }
+
+  void goToPage(int page) {
+    _currentCampaignStep = page;
+    notifyListeners();
+    campaignStepController.animateToPage(
+      page,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.ease,
+    );
   }
 
   void back() {
