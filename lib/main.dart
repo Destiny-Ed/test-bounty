@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_bounty/core/constants.dart';
 import 'package:test_bounty/providers/main_activity_provider.dart';
-import 'package:test_bounty/providers/reports_provider.dart';
+import 'package:test_bounty/providers/campaign_provider.dart';
 import 'core/theme.dart';
 import 'providers/auth_provider.dart';
 import 'providers/role_provider.dart';

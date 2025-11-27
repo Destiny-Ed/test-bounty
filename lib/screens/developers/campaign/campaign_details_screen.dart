@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
-import 'package:test_bounty/providers/reports_provider.dart';
+import 'package:test_bounty/providers/campaign_provider.dart';
 import 'package:test_bounty/screens/developers/campaign/tab_pages/descriptions_view.dart';
 import 'package:test_bounty/screens/developers/campaign/tab_pages/reports/reports_view.dart';
 import 'package:test_bounty/screens/developers/campaign/tab_pages/testers_view.dart';
 import 'package:test_bounty/widgets/info_box.dart';
+import 'package:test_bounty/widgets/info_vertical_card.dart';
 import 'package:test_bounty/widgets/search_widget.dart';
 
 class CampaignDetailsScreen extends StatefulWidget {
@@ -19,11 +20,43 @@ class CampaignDetailsScreen extends StatefulWidget {
 class _CampaignDetailsScreenState extends State<CampaignDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("ChromeNote Ai")),
-      body: Consumer<CampaignProvider>(
-        builder: (context, campaignVm, child) {
-          return CustomScrollView(
+    return Consumer<CampaignProvider>(
+      builder: (context, campaignVm, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("ChromeNote Ai"),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        campaignVm.setCampaignPauseStatus();
+                      },
+                      icon: Icon(
+                        campaignVm.isCampaignPause
+                            ? Icons.play_arrow
+                            : Icons.pause,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        ///TODO: Export reports
+                        print("export reports");
+                      },
+                      child: InfoBox(
+                        color: AppColors.primaryBlue,
+                        textColor: AppColors.white,
+                        value: "Export Reports",
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          body: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
@@ -38,6 +71,22 @@ class _CampaignDetailsScreenState extends State<CampaignDetailsScreen> {
                       ),
                       if (campaignVm.selectedCampaignTab != "description")
                         SearchWidget(title: "search for testers"),
+
+                      Row(
+                        spacing: 20,
+                        children: [
+                          buildInfoVerticalCard(
+                            context,
+                            title: "active testers",
+                            value: "142",
+                          ),
+                          buildInfoVerticalCard(
+                            context,
+                            title: "submitted reports",
+                            value: "42",
+                          ),
+                        ],
+                      ),
                       Container(
                         padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
@@ -92,9 +141,9 @@ class _CampaignDetailsScreenState extends State<CampaignDetailsScreen> {
                 ),
               ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

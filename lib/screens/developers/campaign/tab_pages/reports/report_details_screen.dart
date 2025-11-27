@@ -3,7 +3,7 @@ import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
 import 'package:test_bounty/widgets/header_widget.dart';
 import 'package:test_bounty/widgets/info_box.dart';
-import 'package:test_bounty/widgets/info_tile.dart';
+import 'package:test_bounty/widgets/info_horizontal_tile.dart';
 import 'package:test_bounty/widgets/social_button.dart';
 
 class ReportDetailsScreen extends StatefulWidget {
@@ -88,69 +88,110 @@ class _ReportDetailsScreenState extends State<ReportDetailsScreen> {
                       }),
                     ),
                   ),
-                  buildHeaderTitle(context, text: "device/app info"),
 
-                  buildInfoTile(
-                    context,
-                    title: "app version",
-                    value: "1.0.0(2)",
-                  ),
-                  buildInfoTile(
-                    context,
-                    title: "device model",
-                    value: "iphone 15 pro",
-                  ),
-                  buildInfoTile(
-                    context,
-                    title: "os version",
-                    value: "iOS 26.1",
-                  ),
-                  buildInfoTile(context, title: "battery", value: "25%"),
-                  buildInfoTile(context, title: "carrier", value: "MTN"),
-                  buildInfoTile(
-                    context,
-                    title: "time zone",
-                    value: "eastern standard time",
-                  ),
-                  buildInfoTile(
-                    context,
-                    title: "locale",
-                    value: "english (Nigeria)",
-                  ),
-                  buildInfoTile(
-                    context,
-                    title: "architecture",
-                    value: "arm64e",
-                  ),
-                  buildInfoTile(
-                    context,
-                    title: "connection type",
-                    value: "cellular",
-                  ),
-                  buildInfoTile(
-                    context,
-                    title: "screen resolution",
-                    value: "393 x 852 pts",
-                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      spacing: 10,
+                      children: [
+                        buildHeaderTitle(context, text: "device/app info"),
 
-                  buildHeaderTitle(context, text: "description"),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "app crashes consistently when trying to save profile information after editing the bio. Seems to be an issue with handling long text strings"
-                              .capitalize *
-                          4,
-                      style: Theme.of(context).textTheme.titleSmall!
-                        ..color?.darken(),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "app version",
+                          value: "1.0.0(2)",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "device model",
+                          value: "iphone 15 pro",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "os version",
+                          value: "iOS 26.1",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "battery",
+                          value: "25%",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "carrier",
+                          value: "MTN",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "time zone",
+                          value: "eastern standard time",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "locale",
+                          value: "english (Nigeria)",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "architecture",
+                          value: "arm64e",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "connection type",
+                          value: "cellular",
+                        ),
+                        buildInfoHorizontalTile(
+                          context,
+                          title: "screen resolution",
+                          value: "393 x 852 pts",
+                        ),
+                      ],
                     ),
                   ),
 
-                  buildHeaderTitle(context, text: "reproduction steps"),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      spacing: 10,
+                      children: [
+                        buildHeaderTitle(context, text: "description"),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "app crashes consistently when trying to save profile information after editing the bio. Seems to be an issue with handling long text strings"
+                                    .capitalize *
+                                4,
+                            style: Theme.of(context).textTheme.titleSmall!
+                              ..color?.darken(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      """
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      spacing: 10,
+                      children: [
+                        buildHeaderTitle(context, text: "reproduction steps"),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            """
 1. Navigate to the 'profile' tab
 
 2. Tap the 'Edit Profile' button.
@@ -161,46 +202,65 @@ class _ReportDetailsScreenState extends State<ReportDetailsScreen> {
 
 5. Observe the UI freeze
                   """
-                          .capitalize,
+                                .capitalize,
 
-                      style: Theme.of(context).textTheme.titleSmall!
-                        ..color?.darken()
-                        ..copyWith(letterSpacing: 2),
-                    ),
-                  ),
-
-                  buildHeaderTitle(context, text: "reporter"),
-
-                  ListTile(
-                    dense: true,
-                    contentPadding: const EdgeInsets.all(0),
-                    leading: CircleAvatar(),
-                    title: Text(
-                      "John Doe".cap,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Icon(Icons.star, color: AppColors.yellow, size: 12),
-                        Text(
-                          "4.8 rating".cap,
-                          style: Theme.of(context).textTheme.titleSmall!
-                            ..color?.darken(),
+                            style: Theme.of(context).textTheme.titleSmall!
+                              ..color?.darken()
+                              ..copyWith(letterSpacing: 2),
+                          ),
                         ),
                       ],
                     ),
-                    trailing: TextButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateColor.resolveWith(
-                          (state) => Theme.of(context).primaryColor,
+                  ),
+
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      spacing: 10,
+                      children: [
+                        buildHeaderTitle(context, text: "reporter"),
+
+                        ListTile(
+                          dense: true,
+                          contentPadding: const EdgeInsets.all(0),
+                          leading: CircleAvatar(),
+                          title: Text(
+                            "John Doe".cap,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          subtitle: Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: AppColors.yellow,
+                                size: 12,
+                              ),
+                              Text(
+                                "4.8 rating".cap,
+                                style: Theme.of(context).textTheme.titleSmall!
+                                  ..color?.darken(),
+                              ),
+                            ],
+                          ),
+                          trailing: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateColor.resolveWith(
+                                (state) => Theme.of(context).primaryColor,
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              "send email".cap,
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          ),
                         ),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        "send email".cap,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
+                      ],
                     ),
                   ),
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
-import 'package:test_bounty/providers/reports_provider.dart';
+import 'package:test_bounty/providers/campaign_provider.dart';
 import 'package:test_bounty/screens/developers/campaign/tab_pages/reports/report_details_screen.dart';
 import 'package:test_bounty/widgets/info_box.dart';
 

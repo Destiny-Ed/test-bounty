@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_bounty/providers/reports_provider.dart';
+import 'package:test_bounty/providers/campaign_provider.dart';
 
 class CampaignDescriptionsView extends StatefulWidget {
   final CampaignProvider campaignVm;

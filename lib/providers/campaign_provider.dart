@@ -18,6 +18,13 @@ class CampaignProvider extends ChangeNotifier {
     return color;
   }
 
+  bool _isCampaignPause = false;
+  bool get isCampaignPause => _isCampaignPause;
+  void setCampaignPauseStatus() {
+    _isCampaignPause = !_isCampaignPause;
+    notifyListeners();
+  }
+
   List<String> campaignDetailTabs = ["testers", "description", "reports"];
 
   String _selectedCampaignTab = "testers";

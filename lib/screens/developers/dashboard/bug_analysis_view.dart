@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_bounty/core/enums.dart';
 import 'package:test_bounty/core/extensions.dart';
-import 'package:test_bounty/providers/reports_provider.dart';
+import 'package:test_bounty/providers/campaign_provider.dart';
 
 class AnalysisView extends StatefulWidget {
   const AnalysisView({super.key});

@@ -3,15 +3,21 @@ import 'package:test_bounty/core/extensions.dart';
 
 class InfoBox extends StatelessWidget {
   final Color color;
+  final Color? textColor;
   final String value;
-  const InfoBox({super.key, required this.color, required this.value});
+  const InfoBox({
+    super.key,
+    required this.color,
+    required this.value,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: color.lighten(),
+        color: textColor != null ? color : color.lighten(),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
@@ -19,7 +25,7 @@ class InfoBox extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: Theme.of(
           context,
-        ).textTheme.titleMedium!.copyWith(color: color.darken()),
+        ).textTheme.titleMedium!.copyWith(color: textColor ?? color.darken()),
       ),
     );
   }
