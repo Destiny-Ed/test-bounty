@@ -9,6 +9,7 @@ class AppColors {
   static const bgBlue = Color(0xff0f1116);
   static const darkerBlue = Color(0xff0d2c43);
   static const cardBlack = Color(0xff1b1d22);
+  static const cardWhite = Color(0xfffafbfc);
   static const lighterBlue = Color(0xffbce4ff);
   static const orange = Color(0xffb46b53);
   static const yellow = Color(0xffb9b483);
@@ -33,6 +34,7 @@ class AppTheme {
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF0066FF),
       unselectedItemColor: Colors.grey,
+      backgroundColor: AppColors.bgBlue,
     ),
     cardColor: AppColors.cardBlack,
     inputDecorationTheme: InputDecorationTheme(
@@ -56,6 +58,12 @@ class AppTheme {
     ),
     textTheme: TextTheme(
       headlineLarge: GoogleFonts.inter(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
+      ),
+
+      headlineMedium: GoogleFonts.inter(
         fontSize: 18,
         fontWeight: FontWeight.w700,
         color: AppColors.white,
@@ -91,11 +99,12 @@ class AppTheme {
   static final lightTheme = ThemeData(
     primaryColor: AppColors.primaryBlue,
     secondaryHeaderColor: AppColors.darkGray,
-    cardColor: AppColors.lighterBlue,
+    cardColor: AppColors.cardWhite,
     scaffoldBackgroundColor: AppColors.bgWhite,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF0066FF),
       unselectedItemColor: Colors.grey,
+      backgroundColor: AppColors.bgWhite,
     ),
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: AppColors.primaryBlue,
@@ -121,16 +130,17 @@ class AppTheme {
       ),
     ),
     textTheme: TextTheme(
-      headlineMedium: GoogleFonts.inter(
-        fontSize: 18,
-        fontWeight: FontWeight.w700,
-        color: AppColors.black,
-      ),
       headlineLarge: GoogleFonts.inter(
         fontSize: 24,
         fontWeight: FontWeight.w700,
         color: AppColors.black,
       ),
+      headlineMedium: GoogleFonts.inter(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: AppColors.black,
+      ),
+
       titleLarge: GoogleFonts.inter(
         fontSize: 16,
         fontWeight: FontWeight.bold,

@@ -63,51 +63,22 @@ class DeveloperDashboard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
                     'recent activity'.cap,
-                    style: Theme.of(context).textTheme.headlineLarge,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
                 10.height(),
                 ...List.generate(4, (index) {
-                  return Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 10,
-                      left: 10,
-                      right: 10,
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Theme.of(context).cardColor,
-                    ),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(0),
-                      leading: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: AppColors.primaryGreen.withOpacity(0.1),
-                        ),
-                      ),
-                      title: Text(
-                        "New bug 'UI Glitch'".capitalize,
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      subtitle: Text(
-                        "reported by @destiny_ed".capitalize,
-                        style: Theme.of(context).textTheme.titleMedium!
-                          ..color!.darken(),
-                      ),
-                      trailing: Text(
-                        "2m ago".capitalize,
-                        style: Theme.of(context).textTheme.titleMedium!
-                          ..color!.darken(),
-                      ),
-                    ),
+                  return _activityTile(
+                    context: context,
+                    icon: Icons.bug_report,
+                    color: AppColors.green,
+                    title: "New bug 'UI Glitch'",
+                    subtitle: "Reported by @destinyed",
+                    time: "2m ago",
                   );
                 }),
 
-                50.height(),
+                10.height(),
 
                 //
               ],
@@ -150,7 +121,7 @@ class DeveloperDashboard extends StatelessWidget {
             value,
             style: Theme.of(
               context,
-            ).textTheme.headlineLarge!.copyWith(fontSize: 28),
+            ).textTheme.headlineMedium!.copyWith(fontSize: 20),
           ),
           Text(
             title,
@@ -161,4 +132,46 @@ class DeveloperDashboard extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _activityTile({
+  required BuildContext context,
+  required IconData icon,
+  required Color color,
+  required String title,
+  required String subtitle,
+  required String time,
+}) {
+  return Container(
+    margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    padding: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: Theme.of(context).cardColor,
+    ),
+    child: ListTile(
+      contentPadding: const EdgeInsets.all(0),
+      leading: Container(
+        height: 45,
+        width: 45,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: color.withOpacity(0.1),
+        ),
+        child: Icon(icon, color: color),
+      ),
+      title: Text(
+        title.capitalize,
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
+      subtitle: Text(
+        subtitle.capitalize,
+        style: Theme.of(context).textTheme.titleMedium!..color!.darken(),
+      ),
+      trailing: Text(
+        time.capitalize,
+        style: Theme.of(context).textTheme.titleMedium!..color!.darken(),
+      ),
+    ),
+  );
 }

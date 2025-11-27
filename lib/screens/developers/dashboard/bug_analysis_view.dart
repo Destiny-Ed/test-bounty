@@ -35,7 +35,7 @@ class _AnalysisViewState extends State<AnalysisView> {
                 children: [
                   Text(
                     'bug severity'.cap,
-                    style: Theme.of(context).textTheme.headlineLarge,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
 
                   Text(

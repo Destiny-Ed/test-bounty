@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_bounty/providers/main_activity_provider.dart';
 import 'package:test_bounty/screens/developers/dashboard/developer_home_screen.dart';
-import 'campaigns_screen.dart';
+import 'campaign/campaigns_screen.dart';
 import 'reports_screen.dart';
 import 'dev_wallet_screen.dart';
 
