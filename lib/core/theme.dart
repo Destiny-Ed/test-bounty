@@ -2,34 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static const primaryBlue = Color(0xFF0066FF);
+  static const primaryBlue = Color(0xFF006eff);
+  static const primaryGreen = Color(0xFF00d4b1);
+  static const lightBlue = Color(0xff05baff);
+  static const bgWhite = Color(0xFFf7f8f6);
+  static const bgBlue = Color(0xff0f1116);
+  static const darkerBlue = Color(0xff0d2c43);
+  static const cardBlack = Color(0xff1b1d22);
+  static const lighterBlue = Color(0xffbce4ff);
+  static const orange = Color(0xffb46b53);
+  static const yellow = Color(0xffb9b483);
+  static const red = Color(0xFFef4444);
   static const green = Color(0xFF43A047);
   static const white = Color(0xFFffffff);
   static const gray = Color(0xFFe6e7eb);
   static const darkGray = Colors.grey;
-  static const bgWhite = Color(0xFFf7f8f6);
-  static const bgBlue = Color(0xFF0F1116);
-  static const primaryGreen = Color(0xFF14ec5b);
   static const lightGreen = Color(0xFF1c2d21);
-  static const blackGreen = Color(0xFF141d19);
-  static const red = Color(0xFFef4444);
   static const black = Color(0xFF070909);
 }
 
 class AppTheme {
   static final darkTheme = ThemeData(
-    primaryColor: AppColors.primaryGreen,
-    secondaryHeaderColor: AppColors.blackGreen,
+    primaryColor: AppColors.primaryBlue,
+    secondaryHeaderColor: AppColors.darkerBlue,
     scaffoldBackgroundColor: AppColors.bgBlue,
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: AppColors.primaryGreen,
-      secondary: AppColors.primaryGreen,
+      primary: AppColors.primaryBlue,
+      secondary: AppColors.primaryBlue,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF0066FF),
       unselectedItemColor: Colors.grey,
     ),
-    cardColor: AppColors.lightGreen,
+    cardColor: AppColors.cardBlack,
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(color: AppColors.bgWhite),
       labelStyle: TextStyle(color: AppColors.bgWhite),
@@ -40,7 +45,7 @@ class AppTheme {
         right: 10,
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.primaryGreen),
+        borderSide: BorderSide(color: AppColors.primaryBlue),
       ),
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.bgWhite),
@@ -84,22 +89,21 @@ class AppTheme {
   );
 
   static final lightTheme = ThemeData(
-    primaryColor: AppColors.primaryGreen,
+    primaryColor: AppColors.primaryBlue,
     secondaryHeaderColor: AppColors.darkGray,
-    cardColor: AppColors.gray,
+    cardColor: AppColors.lighterBlue,
     scaffoldBackgroundColor: AppColors.bgWhite,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF0066FF),
       unselectedItemColor: Colors.grey,
     ),
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: AppColors.primaryGreen,
-      secondary: AppColors.primaryGreen,
+      primary: AppColors.primaryBlue,
+      secondary: AppColors.primaryBlue,
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(color: AppColors.bgBlue),
       labelStyle: TextStyle(color: AppColors.bgBlue),
-
       contentPadding: const EdgeInsets.only(
         top: 15,
         bottom: 10,
@@ -107,7 +111,7 @@ class AppTheme {
         right: 10,
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.primaryGreen),
+        borderSide: BorderSide(color: AppColors.primaryBlue),
       ),
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.bgBlue),
@@ -117,8 +121,13 @@ class AppTheme {
       ),
     ),
     textTheme: TextTheme(
-      headlineLarge: GoogleFonts.inter(
+      headlineMedium: GoogleFonts.inter(
         fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: AppColors.black,
+      ),
+      headlineLarge: GoogleFonts.inter(
+        fontSize: 24,
         fontWeight: FontWeight.w700,
         color: AppColors.black,
       ),

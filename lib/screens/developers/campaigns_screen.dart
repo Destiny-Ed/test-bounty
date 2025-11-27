@@ -7,7 +7,10 @@ class CampaignsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Campaigns')),
+      appBar: AppBar(
+        title: const Text('My Campaigns'),
+        automaticallyImplyLeading: false,
+      ),
       body: const Center(
         child: Text(
           'Campaign List Coming Soon\nTap + to create one!',

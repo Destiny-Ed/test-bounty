@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_bounty/providers/main_activity_provider.dart';
 import 'package:test_bounty/screens/testers/active_test_screen.dart';
 import 'package:test_bounty/screens/testers/earning_screen.dart';
 import 'package:test_bounty/screens/testers/test_profile_screen.dart';
 import 'tester_home_screen.dart';
 
-class TesterShell extends StatefulWidget {
+class TesterShell extends StatelessWidget {
   const TesterShell({super.key});
-
-  @override
-  State<TesterShell> createState() => _TesterShellState();
-}
-
-class _TesterShellState extends State<TesterShell> {
-  int _selectedIndex = 0;
 
   final List<Widget> _screens = const [
     TesterHomeScreen(),
@@ -23,22 +18,34 @@ class _TesterShellState extends State<TesterShell> {
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = context.watch<MainActivityProvider>();
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _screens[mainProvider.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+        currentIndex: mainProvider.currentIndex,
+        onTap: (index) => mainProvider.currentIndex = index,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFF0066FF),
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Colors.black
-            : Colors.white,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.play_circle_outline), activeIcon: Icon(Icons.play_circle), label: 'Active'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), activeIcon: Icon(Icons.account_balance_wallet), label: 'Earnings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_circle_outline),
+            activeIcon: Icon(Icons.play_circle),
+            label: 'Active',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet_outlined),
+            activeIcon: Icon(Icons.account_balance_wallet),
+            label: 'Earnings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            activeIcon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
     );

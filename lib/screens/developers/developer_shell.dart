@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test_bounty/screens/developers/developer_home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:test_bounty/providers/main_activity_provider.dart';
+import 'package:test_bounty/screens/developers/dashboard/developer_home_screen.dart';
 import 'campaigns_screen.dart';
 import 'reports_screen.dart';
 import 'dev_wallet_screen.dart';
 
-class DeveloperShell extends StatefulWidget {
+class DeveloperShell extends StatelessWidget {
   const DeveloperShell({super.key});
-
-  @override
-  State<DeveloperShell> createState() => _DeveloperShellState();
-}
-
-class _DeveloperShellState extends State<DeveloperShell> {
-  int _selectedIndex = 0;
 
   final List<Widget> _screens = const [
     DeveloperDashboard(),
@@ -23,13 +18,13 @@ class _DeveloperShellState extends State<DeveloperShell> {
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = context.watch<MainActivityProvider>();
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _screens[mainProvider.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (i) => setState(() => _selectedIndex = i),
+        currentIndex: mainProvider.currentIndex,
+        onTap: (i) => mainProvider.currentIndex = i,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFF0066FF),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),

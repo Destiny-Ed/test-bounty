@@ -34,7 +34,7 @@ class _ResetState extends State<Reset> {
                           children: [
                             Image.asset(
                               Assets.icons.google.path,
-                              width: MediaQuery.of(context).size.width - 150,
+                              width: MediaQuery.of(context).size.width - 100,
                             ),
                             const SizedBox(height: 10),
                             Text(

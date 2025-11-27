@@ -6,7 +6,10 @@ class EarningsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Earnings')),
+      appBar: AppBar(
+        title: const Text('Earnings'),
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -14,13 +17,19 @@ class EarningsScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(30),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(colors: [Color(0xFF0066FF), Color(0xFF00D4B1)]),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF0066FF), Color(0xFF00D4B1)],
+                ),
                 borderRadius: BorderRadius.circular(24),
               ),
               child: const Center(
                 child: Text(
                   '\$247.80',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -30,7 +39,9 @@ class EarningsScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF00D4B1),
                 minimumSize: const Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
               ),
               child: const Text('Withdraw Now', style: TextStyle(fontSize: 20)),
             ),

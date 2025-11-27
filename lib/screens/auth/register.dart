@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/gen/assets.gen.dart';
 import 'package:test_bounty/widgets/form_field.dart';
 import 'package:test_bounty/widgets/social_button.dart';
@@ -34,11 +35,11 @@ class _RegisterState extends State<Register> {
                         children: [
                           Image.asset(
                             Assets.icons.google.path,
-                            width: MediaQuery.of(context).size.width - 150,
+                            width: MediaQuery.of(context).size.width - 100,
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            "Unlock Your Potential",
+                            "Join the hunt".cap,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),

@@ -29,10 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              'assets/lottie/bug-hunting.json',
-              width: 200,
-            ), // Add your Lottie
+            // Lottie.asset(
+            //   'assets/lottie/bug-hunting.json',
+            //   width: 200,
+            // ), // Add your Lottie
             const Text(
               'TestBounty',
               style: TextStyle(
@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const Text(
-              'Earn by testing apps',
+              'Earn money by testing apps',
               style: TextStyle(color: Colors.white70),
             ),
           ],

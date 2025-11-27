@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:test_bounty/core/constants.dart';
+import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/gen/assets.gen.dart';
 import 'package:test_bounty/screens/auth/register.dart';
 import 'package:test_bounty/screens/auth/reset_password.dart';
 import 'package:test_bounty/screens/onboarding_screen.dart';
+import 'package:test_bounty/screens/role_selection_screen.dart';
 import 'package:test_bounty/widgets/form_field.dart';
 import 'package:test_bounty/widgets/social_button.dart';
 
@@ -35,17 +37,18 @@ class LoginViewState extends State<LoginView> {
                         children: [
                           Image.asset(
                             Assets.icons.google.path,
-                            width: MediaQuery.of(context).size.width - 150,
+                            width: MediaQuery.of(context).size.width - 100,
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            "Welcome Back To $appName",
+                            "Welcome Back To $appName".cap,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            "Ready to earn your screen time?",
+                            "get rewarded for testing the latest mobile apps"
+                                .capitalize,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
@@ -82,7 +85,7 @@ class LoginViewState extends State<LoginView> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => OnboardingScreen(),
+                                  builder: (context) => RoleSelectionScreen(),
                                 ),
                               );
                             },

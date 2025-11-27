@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test_bounty/screens/auth_screens.dart';
+import 'package:test_bounty/screens/main_activity.dart';
 import 'package:test_bounty/widgets/glass_container.dart';
 import '../providers/role_provider.dart';
 
@@ -10,34 +10,45 @@ class RoleSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Who are you?',
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 60),
-              _roleCard(
-                context,
-                'Tester',
-                'Earn money testing apps',
-                Icons.bug_report,
-                UserRole.tester,
-              ),
-              const SizedBox(height: 30),
-              _roleCard(
-                context,
-                'Developer',
-                'Get real feedback fast',
-                Icons.code,
-                UserRole.developer,
-              ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            // end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).cardColor,
+              Theme.of(context).scaffoldBackgroundColor,
+              Theme.of(context).cardColor,
             ],
           ),
+        ),
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Who are you?',
+              style: Theme.of(
+                context,
+              ).textTheme.headlineLarge!.copyWith(fontSize: 32),
+            ),
+            const SizedBox(height: 60),
+            _roleCard(
+              context,
+              'Tester',
+              'Earn money testing apps',
+              Icons.bug_report,
+              UserRole.tester,
+            ),
+            const SizedBox(height: 30),
+            _roleCard(
+              context,
+              'Developer',
+              'Get real feedback fast',
+              Icons.code,
+              UserRole.developer,
+            ),
+          ],
         ),
       ),
     );
@@ -52,10 +63,10 @@ class RoleSelectionScreen extends StatelessWidget {
   ) {
     return GestureDetector(
       onTap: () {
-        Provider.of<RoleProvider>(context, listen: false).selectRole(role);
+        context.read<RoleProvider>().selectRole(role);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => const AuthScreen()),
+          MaterialPageRoute(builder: (_) => const MainActivityScreen()),
         );
       },
       child: GlassContainer(
@@ -67,13 +78,7 @@ class RoleSelectionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text(title, style: Theme.of(context).textTheme.headlineLarge),
                   Text(subtitle, style: TextStyle(color: Colors.grey[600])),
                 ],
               ),
