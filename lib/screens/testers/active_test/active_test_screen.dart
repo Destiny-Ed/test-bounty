@@ -1,5 +1,7 @@
 // lib/screens/tester/active_tests_screen.dart
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
+import 'package:test_bounty/core/theme.dart';
 import 'package:test_bounty/screens/testers/active_test/active_test_details_screen.dart';
 
 class ActiveTestsScreen extends StatelessWidget {
@@ -8,62 +10,88 @@ class ActiveTestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Active Tests')),
+      appBar: AppBar(
+        title: const Text('My Active Tests'),
+        automaticallyImplyLeading: false,
+      ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: 4,
+        padding: const EdgeInsets.all(10),
+        itemCount: 10,
         itemBuilder: (context, index) {
           return Card(
             elevation: 6,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            margin: const EdgeInsets.only(bottom: 16),
-            child: ListTile(
-              contentPadding: const EdgeInsets.all(20),
-              leading: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF0066FF), Color(0xFF00D4B1)],
-                  ),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const Icon(
-                  Icons.sports_esports,
-                  color: Colors.white,
-                  size: 32,
-                ),
-              ),
-              title: const Text(
-                'Battle Arena Game',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            color: Theme.of(context).cardColor,
+            margin: const EdgeInsets.only(bottom: 10),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
                 children: [
-                  const Text('Ends in 4 days'),
-                  const SizedBox(height: 8),
-                  LinearProgressIndicator(
+                  ListTile(
+                    contentPadding: const EdgeInsets.all(0),
+                    leading: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            AppColors.primaryGreen,
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Icon(
+                        Icons.sports_esports,
+                        color: AppColors.white,
+                        size: 32,
+                      ),
+                    ),
+                    title: Text(
+                      'DocQuiz Ai'.cap,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    subtitle: Text(
+                      'Ends in 4 days',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    trailing: ElevatedButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ActiveTestDetailScreen(),
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                      child: Text(
+                        'Continue'.capitalize,
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Slider(
+                    padding: const EdgeInsets.all(0),
                     value: 0.6,
-                    backgroundColor: Colors.grey[300],
-                    color: const Color(0xFF00D4B1),
+                    onChanged: (_) {},
+                    thumbColor: AppColors.primaryGreen,
+                    activeColor: AppColors.primaryGreen,
                   ),
-                  const Text('60% completed', style: TextStyle(fontSize: 12)),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '60% completed',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
                 ],
-              ),
-              trailing: ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const ActiveTestDetailScreen(),
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF00D4B1),
-                ),
-                child: const Text('Continue'),
               ),
             ),
           );
