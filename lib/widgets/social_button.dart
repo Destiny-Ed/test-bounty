@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_bounty/core/extensions.dart';
+import 'package:test_bounty/core/theme.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, this.onTap, this.bgColor});
@@ -20,7 +21,12 @@ class CustomButton extends StatelessWidget {
           color: bgColor ?? Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Text(text.cap, style: Theme.of(context).textTheme.titleMedium),
+        child: Text(
+          text.cap,
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: bgColor == null ? AppColors.white : null,
+          ),
+        ),
       ),
     );
   }

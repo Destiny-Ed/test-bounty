@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
 import 'package:test_bounty/providers/tester_dashboard_provider.dart';
-import 'package:test_bounty/screens/testers/dashboard/campaign_details.dart';
+import 'package:test_bounty/screens/testers/dashboard/tester_campaign_details.dart';
 import 'package:test_bounty/widgets/info_box.dart';
 
 class TesterHomeScreen extends StatefulWidget {
@@ -79,7 +79,7 @@ class _TesterHomeScreenState extends State<TesterHomeScreen> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const CampaignDetailScreen(),
+                          builder: (_) => const TesterCampaignDetailScreen(),
                         ),
                       ),
                     );
@@ -179,6 +179,8 @@ class CampaignCard extends StatelessWidget {
                   spacing: 8,
                   children: [
                     Chip(
+                      avatar: Icon(Icons.alarm, color: AppColors.white),
+                      labelPadding: const EdgeInsets.all(0),
                       label: Text(
                         "2 days left",
                         style: const TextStyle(
