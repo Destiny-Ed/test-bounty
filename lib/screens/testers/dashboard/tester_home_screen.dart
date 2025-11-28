@@ -5,7 +5,6 @@ import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
 import 'package:test_bounty/providers/tester_dashboard_provider.dart';
 import 'package:test_bounty/screens/testers/dashboard/tester_campaign_details.dart';
-import 'package:test_bounty/widgets/info_box.dart';
 
 class TesterHomeScreen extends StatefulWidget {
   const TesterHomeScreen({super.key});
@@ -52,7 +51,11 @@ class _TesterHomeScreenState extends State<TesterHomeScreen> {
                         onSelected: (_) => testerVm.selectedFilter = filter,
                         selectedColor: Theme.of(context).primaryColor,
                         backgroundColor: Theme.of(context).cardColor,
-                        labelStyle: TextStyle(color: AppColors.white),
+                        labelStyle: TextStyle(
+                          color: isSelected
+                              ? AppColors.white
+                              : Theme.of(context).textTheme.titleMedium!.color,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),

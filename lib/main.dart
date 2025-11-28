@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:test_bounty/core/constants.dart';
 import 'package:test_bounty/providers/main_activity_provider.dart';
 import 'package:test_bounty/providers/campaign_provider.dart';
+import 'package:test_bounty/providers/report_provider.dart';
 import 'package:test_bounty/providers/tester_dashboard_provider.dart';
 import 'core/theme.dart';
 import 'providers/auth_provider.dart';
@@ -25,6 +26,7 @@ class TestBountyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => MainActivityProvider()),
         ChangeNotifierProvider(create: (_) => CampaignProvider()),
         ChangeNotifierProvider(create: (_) => TesterDashboardProvider()),
+        ChangeNotifierProvider(create: (_) => ReportProvider()),
       ],
       child: MaterialApp(
         title: appName,

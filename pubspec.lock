@@ -233,6 +233,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.11"
+  device_info_plus:
+    dependency: "direct main"
+    description:
+      name: device_info_plus
+      sha256: "4df8babf73058181227e18b08e6ea3520cf5fc5d796888d33b7cb0f33f984b7c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.3.0"
+  device_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_plus_platform_interface
+      sha256: e1ea89119e34903dca74b883d0dd78eb762814f97fb6c76f35e9ff74d261a18f
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.3"
   equatable:
     dependency: transitive
     description:
@@ -241,6 +257,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.7"
+  fading_edge_scrollview:
+    dependency: transitive
+    description:
+      name: fading_edge_scrollview
+      sha256: "1f84fe3ea8e251d00d5735e27502a6a250e4aa3d3b330d3fdcb475af741464ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.1"
   fake_async:
     dependency: transitive
     description:
@@ -520,6 +544,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2"
+  marquee:
+    dependency: "direct main"
+    description:
+      name: marquee
+      sha256: a87e7e80c5d21434f90ad92add9f820cf68be374b226404fe881d2bba7be0862
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   matcher:
     dependency: transitive
     description:
@@ -576,6 +608,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  package_info_plus:
+    dependency: "direct main"
+    description:
+      name: package_info_plus
+      sha256: f69da0d3189a4b4ceaeb1a3defb0f329b3b352517f52bed4290f83d4f06bc08d
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.0"
+  package_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: package_info_plus_platform_interface
+      sha256: "202a487f08836a592a6bd4f901ac69b3a8f146af552bbd14407b6b41e1c3f086"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   path:
     dependency: transitive
     description:
@@ -1005,6 +1053,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.15.0"
+  win32_registry:
+    dependency: transitive
+    description:
+      name: win32_registry
+      sha256: "6f1b564492d0147b330dd794fee8f512cec4977957f310f9951b5f9d83618dae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   xdg_directories:
     dependency: transitive
     description:
