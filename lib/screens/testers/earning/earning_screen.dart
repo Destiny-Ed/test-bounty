@@ -39,7 +39,7 @@ class EarningsScreen extends StatelessWidget {
               ),
               5.height(),
               CustomButton(text: "withdraw"),
-              buildHeaderTitle(context, text: "Payment history"),
+              buildHeaderTitle(context, text: "recent activity"),
 
               ...List.generate(19, (index) {
                 return Container(

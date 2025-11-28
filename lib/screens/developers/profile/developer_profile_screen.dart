@@ -27,36 +27,32 @@ class DeveloperProfileScreen extends StatelessWidget {
             spacing: 10,
             children: [
               // Profile Header
-              Column(
+              Row(
+                spacing: 10,
                 children: [
-                  Row(
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundImage: CachedNetworkImageProvider(
+                      'https://i.pravatar.cc/300',
+                    ),
+                    backgroundColor: Theme.of(context).cardColor,
+                  ),
+                  Column(
                     spacing: 10,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CircleAvatar(
-                        radius: 60,
-                        backgroundImage: CachedNetworkImageProvider(
-                          'https://i.pravatar.cc/300',
-                        ),
-                        backgroundColor: Theme.of(context).cardColor,
+                      Text(
+                        'Sarah Chen',
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
-                      Column(
-                        spacing: 10,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sarah Chen',
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                          Text(
-                            'sarah@pixelcraft.studio',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          InfoBox(
-                            color: AppColors.primaryGreen,
-                            value: "Pro Developer • Verified",
-                            textColor: AppColors.white,
-                          ),
-                        ],
+                      Text(
+                        'sarah@pixelcraft.studio',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      InfoBox(
+                        color: AppColors.primaryGreen,
+                        value: "Pro Developer • Verified",
+                        textColor: AppColors.white,
                       ),
                     ],
                   ),

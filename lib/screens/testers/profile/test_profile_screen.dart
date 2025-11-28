@@ -1,5 +1,13 @@
 // lib/screens/tester/tester_profile_screen.dart
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
+import 'package:test_bounty/core/theme.dart';
+import 'package:test_bounty/widgets/activity_and_metric_card.dart';
+import 'package:test_bounty/widgets/header_widget.dart';
+import 'package:test_bounty/widgets/info_box.dart';
+import 'package:test_bounty/widgets/settings_tile.dart';
+import 'package:test_bounty/widgets/social_button.dart';
 
 class TesterProfileScreen extends StatelessWidget {
   const TesterProfileScreen({super.key});
@@ -7,164 +15,245 @@ class TesterProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile & Settings'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 220,
-            floating: false,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFF0066FF), Color(0xFF00D4B1)],
-                  ),
-                ),
-                child: const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(radius: 60, backgroundColor: Colors.white, child: Icon(Icons.person, size: 80, color: Color(0xFF0066FF))),
-                      SizedBox(height: 16),
-                      Text('Michael Torres', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white)),
-                      Text('Diamond Tester • Level 68', style: TextStyle(fontSize: 18, color: Colors.white70)),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               child: Column(
+                spacing: 10,
                 children: [
+                  Row(
+                    spacing: 10,
+                    children: [
+                      CircleAvatar(
+                        radius: 60,
+                        backgroundImage: CachedNetworkImageProvider(
+                          'https://i.pravatar.cc/300',
+                        ),
+                        backgroundColor: Theme.of(context).cardColor,
+                      ),
+                      Column(
+                        spacing: 10,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Michael Torres',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          Text(
+                            'sarah@pixelcraft.studio',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          InfoBox(
+                            color: AppColors.primaryGreen,
+                            value: "Diamond Tester • Level 68",
+                            textColor: AppColors.white,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   // Rank Badge
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(colors: [Color(0xFFFFD700), Color(0xFFFFA500)]),
-                      borderRadius: BorderRadius.circular(24),
-                      boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 15, offset: const Offset(0, 8))],
+                      gradient: const LinearGradient(
+                        colors: [AppColors.yellow, AppColors.orange],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).cardColor,
+                          blurRadius: 15,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
                     ),
-                    child: const Column(
+                    child: Column(
                       children: [
-                        Icon(Icons.diamond, size: 60, color: Colors.white),
-                        SizedBox(height: 12),
-                        Text('Diamond Rank', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white)),
-                        Text('Top 1% of all testers', style: TextStyle(fontSize: 16, color: Colors.white70)),
+                        Icon(Icons.diamond, size: 35, color: Colors.white),
+                        5.height(),
+                        Text(
+                          'Diamond Rank',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        Text(
+                          'Top 1% of all testers',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 30),
-
-                  // Stats Grid
-                  GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 3,
-                    childAspectRatio: 1.2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
+                  5.height(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    spacing: 16,
                     children: [
-                      _testerStat('Tests Done', '427', Icons.check_circle, Colors.green),
-                      _testerStat('Acceptance', '99.2%', Icons.trending_up, Colors.blue),
-                      _testerStat('Total Earned', '\$8,421', Icons.paid, const Color(0xFF00D4B1)),
+                      Expanded(
+                        child: metricCard(
+                          color: AppColors.green,
+                          context: context,
+                          title: 'Tests Done',
+                          value: '245',
+                          icon: Icons.check_circle,
+                        ),
+                      ),
+                      Expanded(
+                        child: metricCard(
+                          context: context,
+                          color: Theme.of(context).primaryColor,
+                          title: 'Acceptance',
+                          value: '99.2%',
+                          icon: Icons.trending_up,
+                        ),
+                      ),
+                      Expanded(
+                        child: metricCard(
+                          context: context,
+                          color: AppColors.primaryGreen,
+                          title: 'Total Earned',
+                          value: '\$18,420',
+                          icon: Icons.paid,
+                        ),
+                      ),
                     ],
                   ),
-
-                  const SizedBox(height: 30),
+                  5.height(),
 
                   // Streak & Badges
                   Card(
                     elevation: 6,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    color: Theme.of(context).cardColor,
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          const Icon(Icons.local_fire_department, size: 50, color: Colors.orange),
+                          const Icon(
+                            Icons.local_fire_department,
+                            size: 40,
+                            color: AppColors.orange,
+                          ),
                           const SizedBox(width: 16),
-                          const Expanded(child: Text('42-day testing streak!', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
-                          Text('Hot!', style: TextStyle(fontSize: 24, color: Colors.orange[700])),
+                          Expanded(
+                            child: Text(
+                              '42-day testing streak!'.capitalize,
+                              style: Theme.of(context).textTheme.headlineMedium,
+                            ),
+                          ),
+                          Text(
+                            'Hot!',
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(color: AppColors.orange),
+                          ),
                         ],
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 20),
-
                   // Settings
-                  _sectionTitle('Account'),
-                  _testerSettingTile(Icons.wallet, 'Payment Methods', 'PayPal • Crypto', () {}),
-                  _testerSettingTile(Icons.history, 'Earnings History', '\$247 this month', () {}),
-                  _testerSettingTile(Icons.card_giftcard, 'Redeem Gift Cards', 'Amazon, Apple, etc.', () {}),
-
-                  const SizedBox(height: 20),
-                  _sectionTitle('Preferences'),
-                  _testerSettingTile(Icons.notifications, 'Push Notifications', 'All campaigns', () {}),
-                  _testerSettingTile(Icons.security, 'Privacy Settings', 'Public profile', () {}),
-                  _testerSettingTile(Icons.support, 'Help & Support', 'Get help 24/7', () {}),
-
-                  const SizedBox(height: 30),
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.red),
-                      minimumSize: const Size(double.infinity, 56),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                    ),
-                    child: const Text('Sign Out', style: TextStyle(fontSize: 18, color: Colors.red)),
+                  buildHeaderTitle(context, text: 'Account'),
+                  settingTile(
+                    context,
+                    Icons.wallet,
+                    'Payment Methods',
+                    subtitle: 'PayPal • Crypto • Bank account',
+                    () {},
                   ),
+                  settingTile(
+                    context,
+                    Icons.history,
+                    'Earnings History',
+                    subtitle: '\$247 this month',
+                    () {},
+                  ),
+
+                  // settingTile(
+                  //   context,
+                  //   Icons.card_giftcard,
+                  //   'Redeem Gift Cards',
+                  //   subtitle: 'Amazon, Apple, etc.',
+                  //   () {},
+                  // ),
+                  const SizedBox(height: 20),
+                  buildHeaderTitle(context, text: 'Preferences'),
+
+                  settingTile(
+                    context,
+                    Icons.notifications,
+                    'Push Notifications',
+                    subtitle: 'All campaigns',
+                    () {},
+                  ),
+                  settingTile(
+                    context,
+                    Icons.security,
+                    'Privacy Settings',
+                    subtitle: 'Public profile',
+                    () {},
+                  ),
+                  settingTile(
+                    context,
+                    Icons.dark_mode,
+                    'Dark Mode',
+                    () {},
+                    subtitle: "dark",
+                    trailing: Switch(
+                      value: true,
+                      onChanged: (_) {},
+                      activeThumbColor: AppColors.primaryGreen,
+                    ),
+                  ),
+                  settingTile(
+                    context,
+                    Icons.language,
+                    'Language',
+                    subtitle: "English",
+                    () {},
+                    trailing: Icon(
+                      Icons.arrow_drop_down,
+                      color: Theme.of(context).textTheme.titleMedium!.color,
+                    ),
+                  ),
+
+                  buildHeaderTitle(context, text: 'Support'),
+
+                  settingTile(
+                    context,
+                    Icons.support,
+                    'Help & Support',
+                    subtitle: 'Get help 24/7',
+                    () {},
+                  ),
+                  10.height(),
+                  Row(
+                    spacing: 20,
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                          text: "delete account",
+                          bgColor: AppColors.red,
+                        ),
+                      ),
+
+                      Expanded(child: CustomButton(text: "sign out")),
+                    ],
+                  ),
+                  30.height(),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _testerStat(String label, String value, IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withOpacity(0.3)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 36, color: color),
-          const SizedBox(height: 8),
-          Text(value, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: color)),
-          Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
-        ],
-      ),
-    );
-  }
-
-  Widget _sectionTitle(String title) => Align(
-    alignment: Alignment.centerLeft,
-    child: Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF0066FF))),
-  );
-
-  Widget _testerSettingTile(IconData icon, String title, String subtitle, VoidCallback onTap) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: ListTile(
-        leading: CircleAvatar(backgroundColor: const Color(0xFF0066FF).withOpacity(0.1), child: Icon(icon, color: const Color(0xFF0066FF))),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: onTap,
       ),
     );
   }
