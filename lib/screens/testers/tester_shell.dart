@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_bounty/providers/main_activity_provider.dart';
 import 'package:test_bounty/screens/testers/active_test/active_test_screen.dart';
-import 'package:test_bounty/screens/testers/earning_screen.dart';
-import 'package:test_bounty/screens/testers/test_profile_screen.dart';
-import 'tester_home_screen.dart';
+import 'package:test_bounty/screens/testers/earning/earning_screen.dart';
+import 'package:test_bounty/screens/testers/profile/test_profile_screen.dart';
+import 'dashboard/tester_home_screen.dart';
 
 class TesterShell extends StatelessWidget {
   const TesterShell({super.key});

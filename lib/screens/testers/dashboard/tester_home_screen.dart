@@ -1,6 +1,6 @@
 // lib/screens/tester/tester_home_screen.dart
 import 'package:flutter/material.dart';
-import 'package:test_bounty/screens/testers/campaign_details.dart';
+import 'package:test_bounty/screens/testers/dashboard/campaign_details.dart';
 
 class TesterHomeScreen extends StatefulWidget {
   const TesterHomeScreen({super.key});
