@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/screens/auth/login.dart';
+import 'package:test_bounty/screens/auth/social_auth.dart';
 import 'role_selection_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -69,7 +70,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     if (_currentPage == 2) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const LoginView()),
+                        MaterialPageRoute(
+                          builder: (_) => const SocialAuthScreen(),
+                        ),
                       );
                     } else {
                       _controller.nextPage(

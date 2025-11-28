@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/gen/assets.gen.dart';
 import 'package:test_bounty/screens/auth/login.dart';
 import 'package:test_bounty/widgets/form_field.dart';
@@ -29,14 +30,18 @@ class _NewPasswordState extends State<NewPassword> {
                     children: [
                       //Header Text
                       Container(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(30),
                         child: Column(
                           children: [
-                            Image.asset(
-                              Assets.icons.google.path,
-                              width: MediaQuery.of(context).size.width - 100,
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor: Theme.of(context).cardColor,
+                              child: Image.asset(
+                                Assets.icons.google.path,
+                                width: MediaQuery.of(context).size.width - 100,
+                              ),
                             ),
-                            const SizedBox(height: 10),
+                            10.height(),
                             Text(
                               "Reset Password",
                               style: Theme.of(context).textTheme.headlineLarge,
@@ -52,16 +57,16 @@ class _NewPasswordState extends State<NewPassword> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      20.height(),
 
                       //Code
                       CustomTextField(password: false, hint: "Code"),
-                      const SizedBox(height: 20),
+                      20.height(),
 
                       //Password
                       CustomTextField(hint: "Password"),
 
-                      const SizedBox(height: 20),
+                      50.height(),
 
                       //Submit Button
                       CustomButton(text: "Submit"),

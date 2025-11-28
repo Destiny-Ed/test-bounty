@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/gen/assets.gen.dart';
 import 'package:test_bounty/screens/auth/new_password.dart';
 import 'package:test_bounty/widgets/form_field.dart';
@@ -29,19 +30,23 @@ class _ResetState extends State<Reset> {
                     children: [
                       //Header text
                       Container(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(30),
                         child: Column(
                           children: [
-                            Image.asset(
-                              Assets.icons.google.path,
-                              width: MediaQuery.of(context).size.width - 100,
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor: Theme.of(context).cardColor,
+                              child: Image.asset(
+                                Assets.icons.google.path,
+                                width: MediaQuery.of(context).size.width - 100,
+                              ),
                             ),
-                            const SizedBox(height: 10),
+                            10.height(),
                             Text(
                               "Reset Password",
                               style: Theme.of(context).textTheme.headlineLarge,
                             ),
-                            const SizedBox(height: 5),
+                            5.height(),
 
                             Text(
                               "Enter your username or email and we'll send you a link to get back into your account.",
@@ -51,14 +56,16 @@ class _ResetState extends State<Reset> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      20.height(),
+
                       //Email
                       CustomTextField(password: false, hint: "Email/Username"),
 
-                      const SizedBox(height: 20),
+                      50.height(),
+
                       //Reset Button
                       CustomButton(text: "Submit"),
-                      const SizedBox(height: 20),
+                      20.height(),
 
                       //Don't have an account
                       Container(

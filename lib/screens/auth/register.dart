@@ -31,34 +31,46 @@ class _RegisterState extends State<Register> {
                     primary: true,
                     children: [
                       ///Logo and text
-                      Column(
-                        children: [
-                          Image.asset(
-                            Assets.icons.google.path,
-                            width: MediaQuery.of(context).size.width - 100,
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "Join the hunt".cap,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headlineLarge,
-                          ),
-                          const SizedBox(height: 35),
-                        ],
+                      30.height(),
+
+                      ///
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor: Theme.of(context).cardColor,
+                              child: Image.asset(
+                                Assets.icons.google.path,
+                                width: MediaQuery.of(context).size.width - 100,
+                              ),
+                            ),
+                            20.height(),
+                            Text(
+                              "Join the hunt".cap,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.headlineLarge,
+                            ),
+                            const SizedBox(height: 35),
+                          ],
+                        ),
                       ),
+                      30.height(),
                       //Email
                       CustomTextField(password: false, hint: "Email"),
-                      const SizedBox(height: 15),
+                      15.height(),
 
                       //Username
                       CustomTextField(password: false, hint: "Username"),
-                      const SizedBox(height: 15),
+                      15.height(),
 
                       //Password
                       CustomTextField(hint: "Password"),
 
-                      //Agreement?
+                      // //Agreement?
                       CheckboxListTile(
+                        enableFeedback: true,
                         value: _isChecked,
                         onChanged: (value) {
                           setState(() {
@@ -74,39 +86,10 @@ class _RegisterState extends State<Register> {
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
+                      50.height(),
 
                       //Register Button
                       CustomButton(text: "Register"),
-
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 20),
-                        child: Row(
-                          children: [
-                            Expanded(child: Divider()),
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 30,
-                              ),
-                              child: Text(
-                                "OR",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ),
-                            Expanded(child: Divider()),
-                          ],
-                        ),
-                      ),
-                      //Social buttons
-                      SocialButton(
-                        text: "Continue with Google",
-                        icon: Image.asset(Assets.icons.google.path, width: 40),
-                      ),
-                      const SizedBox(height: 15),
-
-                      SocialButton(
-                        text: "Continue with Apple",
-                        icon: Image.asset(Assets.icons.google.path, width: 40),
-                      ),
 
                       //Already have an account
                       Container(
@@ -139,16 +122,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
 
-                      //About
-                      Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "About | Terms of Use",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ),
-
-                      const SizedBox(height: 20),
+                      20.height(),
                     ],
                   ),
                 ),

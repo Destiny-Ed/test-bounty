@@ -27,6 +27,7 @@ class AppTheme {
     primaryColor: AppColors.primaryBlue,
     secondaryHeaderColor: AppColors.darkerBlue,
     scaffoldBackgroundColor: AppColors.bgBlue,
+    highlightColor: AppColors.darkerBlue,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: AppColors.primaryBlue,
       secondary: AppColors.primaryBlue,
@@ -99,6 +100,7 @@ class AppTheme {
   static final lightTheme = ThemeData(
     primaryColor: AppColors.primaryBlue,
     secondaryHeaderColor: AppColors.darkGray,
+    highlightColor: AppColors.lighterBlue,
     cardColor: AppColors.gray,
     scaffoldBackgroundColor: AppColors.bgWhite,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

@@ -4,7 +4,6 @@ import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/gen/assets.gen.dart';
 import 'package:test_bounty/screens/auth/register.dart';
 import 'package:test_bounty/screens/auth/reset_password.dart';
-import 'package:test_bounty/screens/onboarding_screen.dart';
 import 'package:test_bounty/screens/role_selection_screen.dart';
 import 'package:test_bounty/widgets/form_field.dart';
 import 'package:test_bounty/widgets/social_button.dart';
@@ -32,31 +31,45 @@ class LoginViewState extends State<LoginView> {
                     primary: false,
                     shrinkWrap: true,
                     children: [
-                      //Logo and text
                       Column(
                         children: [
-                          Image.asset(
-                            Assets.icons.google.path,
-                            width: MediaQuery.of(context).size.width - 100,
+                          20.height(),
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundColor: Theme.of(context).cardColor,
+                            child: Image.asset(
+                              Assets.icons.google.path,
+                              width: MediaQuery.of(context).size.width - 100,
+                            ),
                           ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "Welcome Back To $appName".cap,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headlineLarge,
+                          20.height(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 35.0,
+                            ),
+                            child: Text(
+                              "Welcome Back To $appName".cap,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.headlineLarge,
+                            ),
                           ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "get rewarded for testing the latest mobile apps"
-                                .capitalize,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.titleMedium,
+                          10.height(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 25.0,
+                            ),
+                            child: Text(
+                              "get rewarded for testing the latest mobile apps"
+                                  .capitalize,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                           ),
-                          const SizedBox(height: 35),
+                          50.height(),
 
                           CustomTextField(password: false, hint: "Email"),
 
-                          const SizedBox(height: 15),
+                          15.height(),
 
                           //Password
                           CustomTextField(hint: "Password"),
@@ -78,9 +91,11 @@ class LoginViewState extends State<LoginView> {
                               ),
                             ),
                           ),
+                          40.height(),
 
                           //Login Button
-                          GestureDetector(
+                          CustomButton(
+                            text: "Login",
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -89,45 +104,6 @@ class LoginViewState extends State<LoginView> {
                                 ),
                               );
                             },
-                            child: CustomButton(text: "Login"),
-                          ),
-
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 20),
-                            child: Row(
-                              children: [
-                                Expanded(child: Divider()),
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                  ),
-                                  child: Text(
-                                    "OR",
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.titleMedium,
-                                  ),
-                                ),
-                                Expanded(child: Divider()),
-                              ],
-                            ),
-                          ),
-                          //Social buttons
-                          SocialButton(
-                            text: "Continue with Google",
-                            icon: Image.asset(
-                              Assets.icons.google.path,
-                              width: 40,
-                            ),
-                          ),
-                          const SizedBox(height: 15),
-
-                          SocialButton(
-                            text: "Continue with Apple",
-                            icon: Image.asset(
-                              Assets.icons.google.path,
-                              width: 40,
-                            ),
                           ),
                         ],
                       ),

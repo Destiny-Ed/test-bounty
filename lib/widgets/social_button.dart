@@ -33,30 +33,39 @@ class CustomButton extends StatelessWidget {
 }
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({super.key, required this.text, required this.icon});
+  const SocialButton({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.onTap,
+  });
 
   final String text;
   final Widget icon;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Theme.of(context).textTheme.titleLarge!.color!,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 53,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(12),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Theme.of(context).secondaryHeaderColor),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          icon,
-          Text(text, style: Theme.of(context).textTheme.titleSmall),
-        ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 5,
+          children: [
+            icon,
+            Text(text, style: Theme.of(context).textTheme.titleMedium),
+          ],
+        ),
       ),
     );
   }
