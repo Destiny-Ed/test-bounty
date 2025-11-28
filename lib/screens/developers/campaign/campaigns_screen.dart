@@ -151,7 +151,7 @@ Widget campaignTile({
                 ).textTheme.titleMedium!.copyWith(color: color),
               ),
               Text(
-                "5/10 tasks complete".capitalize,
+                "5/10 testers submitted".capitalize,
                 style: Theme.of(context).textTheme.titleMedium!
                   ..color!.darken(),
               ),

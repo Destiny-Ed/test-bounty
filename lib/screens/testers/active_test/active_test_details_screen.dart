@@ -28,15 +28,27 @@ class ActiveTestDetailScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 120, height: 120,
+                        width: 120,
+                        height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
                           border: Border.all(color: Colors.white, width: 4),
                         ),
-                        child: const Icon(Icons.sports_esports, size: 80, color: Colors.white),
+                        child: const Icon(
+                          Icons.sports_esports,
+                          size: 80,
+                          color: Colors.white,
+                        ),
                       ),
                       const SizedBox(height: 16),
-                      const Text('Reward: \$18.00', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white)),
+                      const Text(
+                        'Reward: \$18.00',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -53,7 +65,9 @@ class ActiveTestDetailScreen extends StatelessWidget {
                   // Progress Card
                   Card(
                     elevation: 8,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Column(
@@ -61,8 +75,21 @@ class ActiveTestDetailScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text('Progress', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                              const Text('68% Complete', style: TextStyle(fontSize: 16, color: Color(0xFF00D4B1), fontWeight: FontWeight.bold)),
+                              const Text(
+                                'Progress',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Text(
+                                '68% Complete',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF00D4B1),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 12),
@@ -74,7 +101,13 @@ class ActiveTestDetailScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6),
                           ),
                           const SizedBox(height: 12),
-                          const Text('4 days 6 hours remaining', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600)),
+                          const Text(
+                            '4 days 6 hours remaining',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -82,7 +115,10 @@ class ActiveTestDetailScreen extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  const Text('Your Tasks', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Your Tasks',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 16),
 
                   _taskTile('Install the game', true),
@@ -94,7 +130,10 @@ class ActiveTestDetailScreen extends StatelessWidget {
 
                   const Divider(height: 40),
 
-                  const Text('Test Instructions', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Test Instructions',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 12),
                   Container(
                     width: double.infinity,
@@ -125,15 +164,23 @@ class ActiveTestDetailScreen extends StatelessWidget {
                           onPressed: () {
                             // In real app: open screen recorder + overlay tools
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Screen recording started'), backgroundColor: Colors.green),
+                              const SnackBar(
+                                content: Text('Screen recording started'),
+                                backgroundColor: Colors.green,
+                              ),
                             );
                           },
                           icon: const Icon(Icons.videocam, size: 28),
-                          label: const Text('Start Recording', style: TextStyle(fontSize: 18)),
+                          label: const Text(
+                            'Start Recording',
+                            style: TextStyle(fontSize: 18),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF0066FF),
                             padding: const EdgeInsets.symmetric(vertical: 18),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
                           ),
                         ),
                       ),
@@ -144,11 +191,16 @@ class ActiveTestDetailScreen extends StatelessWidget {
                             // Navigate to feedback submission
                           },
                           icon: const Icon(Icons.rate_review, size: 28),
-                          label: const Text('Submit Report', style: TextStyle(fontSize: 18)),
+                          label: const Text(
+                            'Submit Report',
+                            style: TextStyle(fontSize: 18),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF00D4B1),
                             padding: const EdgeInsets.symmetric(vertical: 18),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
                           ),
                         ),
                       ),
@@ -164,12 +216,23 @@ class ActiveTestDetailScreen extends StatelessWidget {
                         context: context,
                         builder: (_) => AlertDialog(
                           title: const Text('Leave this test?'),
-                          content: const Text('You will lose your spot and reward.'),
+                          content: const Text(
+                            'You will lose your spot and reward.',
+                          ),
                           actions: [
-                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
                             TextButton(
-                              onPressed: () => Navigator.popUntil(context, (r) => r.settings.name == '/tester'),
-                              child: const Text('Leave', style: TextStyle(color: Colors.red)),
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.popUntil(
+                                context,
+                                (r) => r.settings.name == '/tester',
+                              ),
+                              child: const Text(
+                                'Leave',
+                                style: TextStyle(color: Colors.red),
+                              ),
                             ),
                           ],
                         ),
@@ -178,9 +241,14 @@ class ActiveTestDetailScreen extends StatelessWidget {
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Colors.red),
                       minimumSize: const Size(double.infinity, 56),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                     ),
-                    child: const Text('Leave Test', style: TextStyle(fontSize: 18, color: Colors.red)),
+                    child: const Text(
+                      'Leave Test',
+                      style: TextStyle(fontSize: 18, color: Colors.red),
+                    ),
                   ),
                 ],
               ),
@@ -196,7 +264,9 @@ class ActiveTestDetailScreen extends StatelessWidget {
       leading: CircleAvatar(
         radius: 16,
         backgroundColor: completed ? Colors.green : Colors.grey[300],
-        child: completed ? const Icon(Icons.check, size: 20, color: Colors.white) : null,
+        child: completed
+            ? const Icon(Icons.check, size: 20, color: Colors.white)
+            : null,
       ),
       title: Text(
         title,

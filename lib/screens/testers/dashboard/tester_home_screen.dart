@@ -1,6 +1,11 @@
 // lib/screens/tester/tester_home_screen.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_bounty/core/extensions.dart';
+import 'package:test_bounty/core/theme.dart';
+import 'package:test_bounty/providers/tester_dashboard_provider.dart';
 import 'package:test_bounty/screens/testers/dashboard/campaign_details.dart';
+import 'package:test_bounty/widgets/info_box.dart';
 
 class TesterHomeScreen extends StatefulWidget {
   const TesterHomeScreen({super.key});
@@ -9,90 +14,81 @@ class TesterHomeScreen extends StatefulWidget {
 }
 
 class _TesterHomeScreenState extends State<TesterHomeScreen> {
-  String selectedFilter = 'All';
-  final List<String> filters = [
-    'All',
-    'Highest Pay',
-    'Newest',
-    'Android',
-    'iOS',
-    'Quick',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Available Tests'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        automaticallyImplyLeading: false,
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
-      body: Column(
-        children: [
-          // Filter Chips
-          SizedBox(
-            height: 50,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: filters.length,
-              itemBuilder: (context, i) {
-                final filter = filters[i];
-                final isSelected = selectedFilter == filter;
-                return Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: ChoiceChip(
-                    label: Text(
-                      filter,
-                      style: TextStyle(
-                        fontWeight: isSelected
-                            ? FontWeight.bold
-                            : FontWeight.normal,
+      body: Consumer<TesterDashboardProvider>(
+        builder: (context, testerVm, child) {
+          return Column(
+            spacing: 10,
+            children: [
+              // Filter Chips
+              SizedBox(
+                height: 50,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  itemCount: testerVm.filters.length,
+                  itemBuilder: (context, i) {
+                    final filter = testerVm.filters[i].toLowerCase();
+                    final isSelected = testerVm.selectedFilter == filter;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: ChoiceChip(
+                        label: Text(
+                          filter.cap,
+                          style: TextStyle(
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                        selected: isSelected,
+                        onSelected: (_) => testerVm.selectedFilter = filter,
+                        selectedColor: Theme.of(context).primaryColor,
+                        backgroundColor: Theme.of(context).cardColor,
+                        labelStyle: TextStyle(color: AppColors.white),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                    ),
-                    selected: isSelected,
-                    onSelected: (_) => setState(() => selectedFilter = filter),
-                    selectedColor: const Color(0xFF00D4B1),
-                    backgroundColor: Colors.grey[200],
-                    labelStyle: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black87,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+                    );
+                  },
+                ),
+              ),
 
-          const SizedBox(height: 16),
-
-          // Campaign List
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: 15,
-              itemBuilder: (context, index) {
-                return CampaignCard(
-                  title: 'FoodRush – Food Delivery App',
-                  reward: '\$14.00',
-                  spotsLeft: 38,
-                  totalSpots: 150,
-                  timeLeft: '2 days left',
-                  tags: ['Android 13+', 'US, UK, CA', 'Screen Record Required'],
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CampaignDetailScreen(),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+              // Campaign List
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    return CampaignCard(
+                      title: 'FoodRush – Food Delivery App',
+                      subtitle: "from Stack Industries",
+                      reward: '\$14.00',
+                      spotsLeft: 38,
+                      totalSpots: 150,
+                      timeLeft: '2 days left',
+                      tags: ['Android 13+', 'US, UK, CA', 'Screen Record'],
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const CampaignDetailScreen(),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -100,7 +96,7 @@ class _TesterHomeScreenState extends State<TesterHomeScreen> {
 
 // Reusable Campaign Card
 class CampaignCard extends StatelessWidget {
-  final String title, reward, timeLeft;
+  final String title, reward, timeLeft, subtitle;
   final int spotsLeft, totalSpots;
   final List<String> tags;
   final VoidCallback onTap;
@@ -108,6 +104,7 @@ class CampaignCard extends StatelessWidget {
   const CampaignCard({
     super.key,
     required this.title,
+    required this.subtitle,
     required this.reward,
     required this.spotsLeft,
     required this.totalSpots,
@@ -120,88 +117,87 @@ class CampaignCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      margin: const EdgeInsets.only(bottom: 16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      margin: const EdgeInsets.only(bottom: 10),
+      color: Theme.of(context).cardColor,
       child: InkWell(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(20),
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF0066FF), Color(0xFF00D4B1)],
-                      ),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Icon(
-                      Icons.fastfood,
-                      color: Colors.white,
-                      size: 32,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          timeLeft,
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+              ListTile(
+                contentPadding: const EdgeInsets.all(0),
+                leading: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        AppColors.primaryGreen,
                       ],
                     ),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        reward,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00D4B1),
-                        ),
-                      ),
-                      Text(
-                        '$spotsLeft/$totalSpots spots',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                  child: Icon(Icons.fastfood, color: AppColors.white, size: 32),
+                ),
+                title: Text(
+                  title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                subtitle: Text(
+                  subtitle,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+
+                trailing: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  spacing: 10,
+                  children: [
+                    Text(
+                      reward,
+                      style: Theme.of(context).textTheme.headlineMedium!
+                          .copyWith(color: Theme.of(context).primaryColor),
+                    ),
+                    Text(
+                      '$spotsLeft/$totalSpots spots',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(),
+                    ),
+                  ],
+                ),
+                onTap: onTap,
               ),
-              const SizedBox(height: 16),
-              Wrap(
-                spacing: 8,
-                children: tags
-                    .map(
+
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 8,
+                  children: [
+                    Chip(
+                      label: Text(
+                        "2 days left",
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: AppColors.white,
+                        ),
+                      ),
+                      backgroundColor: AppColors.red,
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                    ),
+                    ...tags.map(
                       (tag) => Chip(
                         label: Text(tag, style: const TextStyle(fontSize: 11)),
                         backgroundColor: Colors.grey[100],
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                       ),
-                    )
-                    .toList(),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
