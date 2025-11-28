@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_bounty/core/extensions.dart';
 import 'package:test_bounty/core/theme.dart';
 
 class Step7Questionnaire extends StatefulWidget {
@@ -27,7 +28,20 @@ class _Step7QuestionnaireState extends State<Step7Questionnaire> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text('Qestionnaire', style: Theme.of(context).textTheme.headlineLarge),
+        10.height(),
+        Text(
+          'build the survey your testers will complete.'.capitalize,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        Text(
+          'Drag to reorder questions.'.capitalize,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+
+        20.height(),
         ReorderableListView(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,

@@ -15,7 +15,7 @@ class InfoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: textColor != null ? color : color.lighten(),
         borderRadius: BorderRadius.circular(10),
