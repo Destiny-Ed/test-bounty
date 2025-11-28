@@ -26,14 +26,12 @@ class DevWalletScreen extends StatelessWidget {
                   color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(24),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     '\$5,420.00',
-                    style: TextStyle(
-                      fontSize: 44,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineLarge?.copyWith(fontSize: 44),
                   ),
                 ),
               ),

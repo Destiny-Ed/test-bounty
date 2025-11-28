@@ -77,13 +77,13 @@ class ActiveTestsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Slider(
-                    padding: const EdgeInsets.all(0),
-                    value: 0.6,
-                    onChanged: (_) {},
-                    thumbColor: AppColors.primaryGreen,
-                    activeColor: AppColors.primaryGreen,
-                  ),
+                  // Slider(
+                  //   padding: const EdgeInsets.all(0),
+                  //   value: 0.6,
+                  //   onChanged: (_) {},
+                  //   thumbColor: AppColors.primaryGreen,
+                  //   activeColor: AppColors.primaryGreen,
+                  // ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
